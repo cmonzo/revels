@@ -1,6 +1,9 @@
 <?php
 session_start();
-require_once('/revels/base datos/conexion.php');
+require_once('base datos/conexion.php');
+if(isset($_SESSION['usuario']) && $_SESSION['usuario']['registro'] == 'correcto'){
+    header('Location:revel.php');
+}
 if (isset($_POST['usuario'])){
     $conectar = conectarBBDD();
         if ($conectar == null){
@@ -46,7 +49,7 @@ if (isset($_POST['usuario'])){
 </head>
 <body>
     <?php
-    include_once('header.inc.php');
+    include_once('inc/header.inc.php');
     ?>
     <main>
     <div class= "form">

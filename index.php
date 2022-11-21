@@ -1,5 +1,8 @@
 <?php
 session_start();
+if (isset($_SESSION['usuario']['registro']) && $_SESSION['usuario']['registro'] == 'correcto'){
+    header('Location:revel.php');
+}
 
 ?>
 <!DOCTYPE html>

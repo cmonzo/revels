@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once('inc/header.inc.php');
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -11,6 +11,8 @@ require_once('inc/header.inc.php');
     <title>REVELS</title>
 </head>
 <body>
-    
+<?php
+    include_once('inc/header.inc.php');
+    ?>
 </body>
 </html>

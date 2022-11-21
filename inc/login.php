@@ -7,16 +7,17 @@ if (isset($_POST['usuario'])){
             echo '<p> No se ha podido conectar a la base de datos</p>';
         } else {
             try{
-            $resultado =$conectar->prepare('SELECT contrasenya from users where usuario=? or email=?;');
+            $resultado =$conectar->prepare('SELECT id,contrasenya from users where usuario=? or email=?;');
             $resultado->bindParam(1,$_POST['usuario']);
             $resultado->bindParam(2,$_POST['usuario']);
             $resultado->execute();
             
             foreach ($resultado->fetchAll() as $producto){
                /*$passEncriptada = password_hash($_POST['pass'],PASSWORD_DEFAULT);*/
-               if (password_verify($_POST['pass'],$producto[0])){
+               if (password_verify($_POST['pass'],$producto['contrasenya'])){
                     $_SESSION['usuario']['registro'] = 'correcto';
                     $_SESSION['usuario']['nombre'] = $_POST['usuario'];
+                    $_SESSION['usuario']['id'] = $producto['id'];
                     $_SESSION['usuario']['contrasenya'] = $producto['contrasenya'];
                }
 
